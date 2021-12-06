@@ -56,8 +56,8 @@ st.subheader("Confounding Variable:Duration ")
 st.write("Another confounding variable is duration. Whether or not a user clicks on a video is in part reliant on this aspect, as users may be hesitant to watch longer or shorter videos.The chart below shows the duration relative to total views, with no correlation for the most part. However, it is evident that most of the videos within one standard deviation fall into the same 'duration category', and anything outside of that can be considered as within a different category. This is because longer videos are most likely 'compliations' of previous videos, and shorter videos are 'shorts'. Although there is no correlation evident from the chart, I will be cleaning the dataset to remove all videos not within one standard deviation of the mean, in order to keep the videos' 'duration category' constant. ")
 mean = df["duration_seconds"].mean()
 stdev = df["duration_seconds"].std()
-stdev1b = mean +std
-stdev1 = mean -std
+stdev1b = mean +stdev
+stdev1 = mean -stdev
 range_ = ['red','green']
 domain_ = ['1 standard deviation','mean']
 scatter_plot = alt.Chart(df).mark_circle().encode(
@@ -102,7 +102,7 @@ st.altair_chart(scatter_plot + stdev1_plot  + stdev1_plotb + mean_line)
 
 # final dataset
 sub_df=df.copy()
-df= df[(df['duration_seconds']<std1)&(df['duration_seconds']>std1b)&
+df= df[(df['duration_seconds']<stdev1)&(df['duration_seconds']>stdev1b)&
        (df['active_since_days']>=20)]
 df = df.drop(["duration_seconds","active_since_days"],axis = 1)
 
