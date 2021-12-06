@@ -109,7 +109,7 @@ df = df.drop(["duration_seconds","active_since_days"],axis = 1)
 
 #keywords
 st.header("Keywords")
-st.write("Whether or not a user decides to watch a video may be influenced by the use of certain keywords. This section will analyze the existence of a correlation between a video's popularity and its use of 'keywords'.")
+st.write("Whether or not a user decides to watch a video may be influenced by the use of certain keywords. This section will analyze the correlation between a video's popularity and its use of 'keywords'.")
 keyword_df = df.copy()
 #returns title converted to a list of words
 def getwords(title):
