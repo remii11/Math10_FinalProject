@@ -143,16 +143,16 @@ keyword_df["word_list"]=keyword_df["word_list"].apply(remove_special_chars)
 
 #makes a list of all words used, and removes 'nonkeywords'
 A= list(keyword_df["word_list"])
-all_words_list = A[0]+A[1]
+A2 = A[0]+A[1]
 for i in range(2,len(A)):
-    all_words_list = all_words_list +A[i]
+    A2 = A2 +A[i]
 nonkeywords = ["AND","TO","YOUR","YOU","FOR","WILL","THAT"]
-for i in range(len(all_words_list)):
+for i in range(len(A2)):
     for j in range(len(nonkeywords)):
-        if nonkeywords[j]==all_words_list[i]:
-            all_words_list[i]= " "
-all_words_list = [x for x in all_words_list if x != " "]
-all_words_frequency = pd.DataFrame(all_words_list)
+        if nonkeywords[j]==A2[i]:
+            A2[i]= " "
+A2 = [x for x in A2 if x != " "]
+all_words_frequency = pd.DataFrame(A2)
 #value_counts() of top 10 keywords used
 frequency = list(all_words_frequency.value_counts().iloc[0:10])
 keywords = ["HACKS","LIFE","IDEAS","DIY","TRICKS","MAKE","EASY","COOL","KNOW","TIPS"]
