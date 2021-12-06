@@ -55,9 +55,9 @@ st.write("From testing different values in this chart, it is evident that there 
 st.subheader("Confounding Variable:Duration ")
 st.write("Another confounding variable is duration. Whether or not a user clicks on a video is in part reliant on this aspect, as users may be hesitant to watch longer or shorter videos.The chart below shows the duration relative to total views, with no correlation for the most part. However, it is evident that most of the videos within one standard deviation fall into the same 'duration category', and anything outside of that can be considered as within a different category. This is because longer videos are most likely 'compliations' of previous videos, and shorter videos are 'shorts'. Although there is no correlation evident from the chart, I will be cleaning the dataset to remove all videos not within one standard deviation of the mean, in order to keep the videos' 'duration category' constant. ")
 mean = df["duration_seconds"].mean()
-std = df["duration_seconds"].std()
-std1 = mean +std
-std1b = mean -std
+stdev = df["duration_seconds"].std()
+stdev1b = mean +std
+stdev1 = mean -std
 range_ = ['red','green']
 domain_ = ['1 standard deviation','mean']
 scatter_plot = alt.Chart(df).mark_circle().encode(
@@ -75,30 +75,30 @@ mean_line = alt.Chart(mean).mark_line(color = 'green').encode(
     y= 'total_views',
 )
 
-std1_line = pd.DataFrame({
+stdev1_line = pd.DataFrame({
     'duration_seconds': [210, 210],
     'total_views':  [0, 300000000],
     'Key': "1 standard deviation"
 })
 
-std1_plot = alt.Chart(std1_line).mark_line().encode(
+stdev1_plot = alt.Chart(stdev1_line).mark_line().encode(
     x= 'duration_seconds',
     y= 'total_views',
     color = alt.Color('Key', scale = alt.Scale(domain = domain_,range = range_))
 )
 
-std1_lineb = pd.DataFrame({
+stdev1_lineb = pd.DataFrame({
     'duration_seconds': [1650, 1650],
     'total_views':  [0, 300000000],
     
 })
 
-std1_plotb = alt.Chart(std1_lineb).mark_line(color = 'red').encode(
+stdev1_plotb = alt.Chart(stdev1_lineb).mark_line(color = 'red').encode(
     x= 'duration_seconds',
     y= 'total_views',
 )
 
-st.altair_chart(scatter_plot + std1_plot  + std1_plotb + mean_line)
+st.altair_chart(scatter_plot + stdev1_plot  + stdev1_plotb + mean_line)
 
 # final dataset
 sub_df=df.copy()
@@ -142,19 +142,19 @@ def remove_special_chars(title):
 keyword_df["word_list"]=keyword_df["word_list"].apply(remove_special_chars)
 
 #makes a list of all words used, and removes 'nonkeywords'
-A= list(keyword_df["word_list"])
-A1 = A[0]+A[1]
-for i in range(2,len(A)):
-    A1 = A1 +A[i]
+all_words_array= list(keyword_df["word_list"])
+all_words_list = A[0]+A[1]
+for i in range(2,len(all_words_array)):
+    all_words_list = all_words_list +all_words_array[i]
 nonkeywords = ["AND","TO","YOUR","YOU","FOR","WILL","THAT"]
-for i in range(len(A1)):
+for i in range(len(all_words_list)):
     for j in range(len(nonkeywords)):
-        if nonkeywords[j]==A1[i]:
-            A1[i]= " "
-A1 = [x for x in A1 if x != " "]
-A2 = pd.DataFrame(A1)
+        if nonkeywords[j]==all_words_list[i]:
+            all_words_list[i]= " "
+all_words_list = [x for x in all_words_list if x != " "]
+all_words_frequency = pd.DataFrame(all_words_list)
 #value_counts() of top 10 keywords used
-frequency = list(A2.value_counts().iloc[0:10])
+frequency = list(all_words_frequency.value_counts().iloc[0:10])
 keywords = ["HACKS","LIFE","IDEAS","DIY","TRICKS","MAKE","EASY","COOL","KNOW","TIPS"]
 topkeywords = pd.DataFrame({
     'Keyword': ["HACKS","LIFE","IDEAS","DIY","TRICKS","MAKE","EASY","COOL","KNOW","TIPS"],
