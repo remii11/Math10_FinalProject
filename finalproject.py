@@ -143,7 +143,7 @@ keyword_df["word_list"]=keyword_df["word_list"].apply(remove_special_chars)
 
 #makes a list of all words used, and removes 'nonkeywords'
 all_words_array= list(keyword_df["word_list"])
-all_words_list = A[0]+A[1]
+all_words_list = all_words_array[0]+all_words_array[1]
 for i in range(2,len(all_words_array)):
     all_words_list = all_words_list +all_words_array[i]
 nonkeywords = ["AND","TO","YOUR","YOU","FOR","WILL","THAT"]
