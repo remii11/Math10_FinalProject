@@ -12,7 +12,7 @@ st.markdown("**Remi Inoue**: [GitHub Repository](https://github.com/remii11/Math
 st.subheader("Dataset:")
 st.markdown("[5-Minute Crafts: Video Clickbait Titles?](https://www.kaggle.com/shivamb/5minute-crafts-video-views-dataset)")
 #intro
-st.write("5-Minute Crafts is a popular channel on YouTube, with 74.6 million subscribers. The channel is often criticized for its misleading aspects such as the thumbnails, that can be considered as 'clickbait'. However, these factors most likely contribute to the large amount of views and video engagement that the channel generates. Although the video thumbnail is a significant factor towards audience engagement, a viewer is likely to be convinced by the title as well. In this project, I will be analyzing the correlation between a variety of aspects of video titles relative to its popularity")
+st.write("5-Minute Crafts is a popular channel on YouTube, with 74.6 million subscribers. The channel is often criticized for its misleading aspects such as the thumbnails, that can be considered as 'clickbait'. However, these factors most likely contribute to the large amount of views and video engagement that the channel generates. Although the video thumbnail is a significant factor towards audience engagement, a viewer is likely to be convinced by the title as well. In this project, I will be analyzing the correlation between a variety of aspects of video titles relative to its popularity.")
 df = pd.read_csv("5-Minute Crafts.csv")
 st.header("Data Cleaning and Confounding Variables")
 st.write("Although we are studying effectiveness of a video title relative to its popularity, the dataset contains other elements that can also affect the popularity as well. Therefore, we will examine the influence of other elements, and minimize this as much as possible in order to keep other categories constant, as not to wrongly influence the results based on title. ")
@@ -53,7 +53,7 @@ st.write("From testing different values in this chart, it is evident that there 
 
 # standard deviation and mean
 st.subheader("Confounding Variable:Duration ")
-st.write("Another confounding variable is duration. Whether or not a user clicks on a video is in part reliant on this aspect, as users may be hesitant to watch longer or shorter videos.The chart below shows the duration relative to total views, with no correlation for the most part. However, it is evident that most of the videos within one standard deviation fall into the same 'duration category', and anything outside of that can be considered as within a different category. This is because longer videos are most likely 'compliations' of previous videos, and shorter videos are 'shorts'. Although there is no correlation evident from the chart, I will be cleaning the dataset to remove all videos not within one standard deviation of the mean, in order to keep the videos' 'duration category' constant. ")
+st.write("Another confounding variable is duration. Whether or not a user clicks on a video is in part reliant on this aspect, as users may be hesitant to watch longer or shorter videos.The chart below shows the duration relative to total views, with no correlation for the most part. However, it is evident that most of the videos within one standard deviation fall into the same 'duration category', and anything outside of that can be considered as within a different category. This is because longer videos are most likely 'compilations' of previous videos, and shorter videos are 'shorts'. Although there is no correlation evident from the chart, I will be cleaning the dataset to remove all videos not within one standard deviation of the mean, in order to keep the videos' duration categories constant. ")
 mean = df["duration_seconds"].mean()
 stdev = df["duration_seconds"].std()
 stdev1 = mean +stdev
@@ -109,7 +109,7 @@ df = df.drop(["duration_seconds","active_since_days"],axis = 1)
 
 #keywords
 st.header("Keywords")
-st.write("When deciding on whether or not to click on a video, certain keywords may influence this. This section will analyze the existence of a correlation between a video's popularity and its use of 'keywords'.")
+st.write("Whether or not a user decides to watch a video may be influenced by the use of certain keywords. This section will analyze the existence of a correlation between a video's popularity and its use of 'keywords'.")
 keyword_df = df.copy()
 #returns title converted to a list of words
 def getwords(title):
@@ -261,7 +261,7 @@ st.altair_chart(chart3)
 
 #title sentiment
 st.header("Title Sentiment Using TextBlob")
-st.write("The dataset also includes an element called 'title sentiment', which computes a 'sentiment score' for the title in the interval between -1 and 1. A score of less than one means the title is 'negative', more than one means it is 'positive', and a score of zero means it is 'neutral'. Although it is concluded that there is not much correlation between video titles and popularity, the title is still a very crucial element to the video. ")
+st.write("The dataset also includes an element called 'title sentiment', which computes a 'sentiment score' for the title in the interval between -1 and 1. A score of less than zero means the title is 'negative', more than zero means it is 'positive', and a score of zero means it is 'neutral'. Although it is concluded that there is not much correlation between video titles and popularity, the title is still a very crucial element to the video. ")
 def title_sentiment(title):
     title = TextBlob(title)
     return title.sentiment.polarity
