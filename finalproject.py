@@ -8,7 +8,7 @@ import streamlit as st
 from textblob import TextBlob
 
 st.title("5-Minute Crafts:Do Video Titles Relate to Views?")
-st.markdown("**Remi Inoue**: [GitHub](https://github.com/remii11/Math10_FinalProject)")
+st.markdown("**Remi Inoue**: [GitHub Repository](https://github.com/remii11/Math10_FinalProject)")
 st.subheader("Dataset:")
 st.markdown("[5-Minute Crafts: Video Clickbait Titles?](https://www.kaggle.com/shivamb/5minute-crafts-video-views-dataset)")
 #intro
@@ -55,9 +55,9 @@ st.write("From testing different values in this chart, it is evident that there 
 st.subheader("Confounding Variable:Duration ")
 st.write("Another confounding variable is duration. Whether or not a user clicks on a video is in part reliant on this aspect, as users may be hesitant to watch longer or shorter videos.The chart below shows the duration relative to total views, with no correlation for the most part. However, it is evident that most of the videos within one standard deviation fall into the same 'duration category', and anything outside of that can be considered as within a different category. This is because longer videos are most likely 'compliations' of previous videos, and shorter videos are 'shorts'. Although there is no correlation evident from the chart, I will be cleaning the dataset to remove all videos not within one standard deviation of the mean, in order to keep the videos' 'duration category' constant. ")
 mean = df["duration_seconds"].mean()
-std = df["duration_seconds"].std()
-std1 = mean +std
-std1b = mean -std
+stdev = df["duration_seconds"].std()
+stdev1 = mean +stdev
+stdev1b = mean -stdev
 range_ = ['red','green']
 domain_ = ['1 standard deviation','mean']
 scatter_plot = alt.Chart(df).mark_circle().encode(
@@ -75,34 +75,34 @@ mean_line = alt.Chart(mean).mark_line(color = 'green').encode(
     y= 'total_views',
 )
 
-std1_line = pd.DataFrame({
+stdev1_line = pd.DataFrame({
     'duration_seconds': [210, 210],
     'total_views':  [0, 300000000],
     'Key': "1 standard deviation"
 })
 
-std1_plot = alt.Chart(std1_line).mark_line().encode(
+stdev1_plot = alt.Chart(stdev1_line).mark_line().encode(
     x= 'duration_seconds',
     y= 'total_views',
     color = alt.Color('Key', scale = alt.Scale(domain = domain_,range = range_))
 )
 
-std1_lineb = pd.DataFrame({
+stdev1_lineb = pd.DataFrame({
     'duration_seconds': [1650, 1650],
     'total_views':  [0, 300000000],
     
 })
 
-std1_plotb = alt.Chart(std1_lineb).mark_line(color = 'red').encode(
+stdev1_plotb = alt.Chart(stdev1_lineb).mark_line(color = 'red').encode(
     x= 'duration_seconds',
     y= 'total_views',
 )
 
-st.altair_chart(scatter_plot + std1_plot  + std1_plotb + mean_line)
+st.altair_chart(scatter_plot + stdev1_plot  + stdev1_plotb + mean_line)
 
 # final dataset
 sub_df=df.copy()
-df= df[(df['duration_seconds']<std1)&(df['duration_seconds']>std1b)&
+df= df[(df['duration_seconds']<stdev1)&(df['duration_seconds']>stdev1b)&
        (df['active_since_days']>=20)]
 df = df.drop(["duration_seconds","active_since_days"],axis = 1)
 
