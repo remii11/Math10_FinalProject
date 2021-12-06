@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 import streamlit as st
 from textblob import TextBlob
 
-st.title("5-Minute Crafts:Do Video Titles Relate to Views?")
+st.title("5-Minute Crafts: Are Views Related to Video Titles?")
 st.markdown("**Remi Inoue**: [GitHub Repository](https://github.com/remii11/Math10_FinalProject)")
 st.subheader("Dataset:")
 st.markdown("[5-Minute Crafts: Video Clickbait Titles?](https://www.kaggle.com/shivamb/5minute-crafts-video-views-dataset)")
