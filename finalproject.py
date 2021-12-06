@@ -261,7 +261,7 @@ st.altair_chart(chart3)
 
 #title sentiment
 st.header("Title Sentiment Using TextBlob")
-st.write("The dataset also includes an element called 'title sentiment', which computes a 'sentiment score' for the title in the interval between -1 and 1. A score of less than zero means the title is 'negative', more than zero means it is 'positive', and a score of zero means it is 'neutral'. Although it is concluded that there is not much correlation between video titles and popularity, the title is still a very crucial element to the video. ")
+st.write("The dataset also includes an element called 'title sentiment', which computes a 'sentiment score' for the title in the interval between -1 and 1. A score of less than zero means the title is 'negative', more than zero means it is 'positive', and a score of zero means it is 'neutral'. Although it is concluded that there is not much correlation between elements of video titles and popularity, the title is still a very crucial element to the video. ")
 def title_sentiment(title):
     title = TextBlob(title)
     return title.sentiment.polarity
