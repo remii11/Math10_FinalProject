@@ -1,0 +1,6 @@
+streamlit == 1.0.0
+numpy == 1.20.1
+pandas == 1.2.4
+altair == 4.1.0
+scikit-learn == 0.24.1
+textblob == 0.17.1
