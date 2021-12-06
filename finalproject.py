@@ -13,7 +13,7 @@ st.subheader("Dataset:")
 st.markdown("[5-Minute Crafts: Video Clickbait Titles?](https://www.kaggle.com/shivamb/5minute-crafts-video-views-dataset)")
 #intro
 st.write("5-Minute Crafts is a popular channel on YouTube, with 74.6 million subscribers. The channel is often criticized for its misleading aspects such as the thumbnails, that can be considered as 'clickbait'. However, these factors most likely contribute to the large amount of views and video engagement that the channel generates. Although the video thumbnail is a significant factor towards audience engagement, a viewer is likely to be convinced by the title as well. In this project, I will be analyzing the correlation between a variety of aspects of video titles relative to its popularity")
-df = pd.read_csv("../Jupyter/Datasets/5-Minute Crafts.csv")
+df = pd.read_csv("5-Minute Crafts.csv")
 st.header("Data Cleaning and Confounding Variables")
 st.write("Although we are studying effectiveness of a video title relative to its popularity, the dataset contains other elements that can also affect the popularity as well. Therefore, we will examine the influence of other elements, and minimize this as much as possible in order to keep other categories constant, as not to wrongly influence the results based on title. ")
 #linear regression: active_since_days
