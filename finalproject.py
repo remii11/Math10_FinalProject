@@ -15,7 +15,7 @@ st.markdown("[5-Minute Crafts: Video Clickbait Titles?](https://www.kaggle.com/s
 st.write("5-Minute Crafts is a popular channel on YouTube, with 74.6 million subscribers. The channel is often criticized for its misleading aspects such as the thumbnails, that can be considered as 'clickbait'. However, these factors most likely contribute to the large amount of views and video engagement that the channel generates. Although the video thumbnail is a significant factor towards audience engagement, a viewer is likely to be convinced by the title as well. In this project, I will be analyzing the correlation between a variety of aspects of video titles relative to its popularity.")
 df = pd.read_csv("5-Minute Crafts.csv")
 st.header("Data Cleaning and Confounding Variables")
-st.write("Although we are studying effectiveness of a video title relative to its popularity, the dataset contains other elements that can also affect the popularity as well. Therefore, we will examine the influence of other elements, and minimize this as much as possible in order to keep other categories constant, as not to wrongly influence the results based on title. ")
+st.write("Although we are studying effectiveness of a video title relative to its popularity, the dataset contains other elements that can also affect the popularity as well. Therefore, we will examine the influence of other elements, and minimize this as much as possible in order to keep other categories constant, as not to wrongly influence the results based on the title. ")
 #linear regression: active_since_days
 st.subheader("Confounding Variable: Recency")
 st.write("In this dataset, the growth rate of the video is not given. Therefore, it can be said that the popularity of a video is unreliable when newer videos have lower views. To confirm this, below is a chart showing the correlation between a video's number of active days and view count at select points. ")
@@ -109,7 +109,7 @@ df = df.drop(["duration_seconds","active_since_days"],axis = 1)
 
 #keywords
 st.header("Keywords")
-st.write("Whether or not a user decides to watch a video may be influenced by the use of certain keywords. This section will analyze the correlation between a video's popularity and its use of 'keywords'.")
+st.write("Whether or not a user decides to watch a video may be influenced by the use of certain keywords in the title. This section will analyze the correlation between a video's popularity and its use of 'keywords'.")
 keyword_df = df.copy()
 #returns title converted to a list of words
 def getwords(title):
